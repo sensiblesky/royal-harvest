@@ -16,10 +16,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+  User::truncate();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        \App\Models\User::create([
+            'name' => 'conic',
+            'email' => 'cbunih@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('conicmaster'),
+        ]);
+
+
+        \App\Models\User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('royalHarvest25'),
         ]);
     }
 }

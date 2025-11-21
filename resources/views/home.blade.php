@@ -470,7 +470,7 @@
 
 
                                 <div class="form-group ml-md-4">
-                                    <input required disabled type="submit" value="Submit Now" class="btn btn-secondary py-3 px-4">
+                                    <input type="submit" value="Submit Now" class="btn btn-secondary py-3 px-4">
                                 </div>
 
                             </div>

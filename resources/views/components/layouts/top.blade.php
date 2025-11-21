@@ -47,7 +47,7 @@
         </form>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav mr-auto">
-	        	<li class="nav-item active"><a href="index.html" class="nav-link pl-0">Home</a></li>
+	        	<li class="nav-item active"><a href="/" class="nav-link pl-0">Home</a></li>
 	        	{{-- <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 	        	<li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
 	        	<li class="nav-item"><a href="teacher.html" class="nav-link">Staff</a></li>

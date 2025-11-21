@@ -2,7 +2,13 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use App\Models\User;
+use App\Models\Promotion;
+use App\Models\Blog;
+use App\Models\Subscriber;
+use App\Models\Contact;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,5 +26,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+
+        View::share([
+            "year" => date('Y'),
+            "users" => User::latest()->get(),
+            // "updates" => Blog::latest()->paginate(6),
+            // "blogs" => Blog::latest()->limit(3)->get(),
+            // "subscribers" => Subscriber::latest()->get(),
+            // "contacts" => Contact::latest()->get(),
+        ]);
     }
 }
