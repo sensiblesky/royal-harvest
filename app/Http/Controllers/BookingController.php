@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+     function index(Request $request)  {
+        return view('components.pages.booking');
+
+
+     }
     function store(Request $request)  {
         // dd($request);
          $cleanedData = $request->validate([

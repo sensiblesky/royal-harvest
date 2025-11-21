@@ -9,7 +9,7 @@
                     <div class="col-md-6 ftco-animate">
                         <h1 class="mb-4">Experience Royal Beauty</h1>
                         <p>Where elegance meets perfection — for both men & women</p>
-                        <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Book Now</a></p>
+                        <p><a href="{{route('booking.index')}}" class="btn btn-primary px-4 py-3 mt-3">Book Now</a></p>
                     </div>
                 </div>
             </div>

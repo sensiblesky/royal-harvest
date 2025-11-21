@@ -84,8 +84,8 @@
              </div>
              <div class="col-md-6 text-center">
 
-                 <a href="#"><span class="icon-facebook"></span> Facebook |</a>
-                 <a href="#"><span class="icon-instagram"></span> Instagram</a>
+                 <a href="https://www.facebook.com/royal_pixies_bridal_salon"><span class="icon-facebook"></span> Facebook |</a>
+                 <a href="https://www.instagram.com/royal_pixies_bridal_salon/"><span class="icon-instagram"></span> Instagram</a>
                 
              </div>
          </div>
