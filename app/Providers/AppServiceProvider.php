@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::share([
             "year" => date('Y'),
-            "users" => User::latest()->get(),
+            // "users" => User::latest()->get(),
             // "updates" => Blog::latest()->paginate(6),
             // "blogs" => Blog::latest()->limit(3)->get(),
             // "subscribers" => Subscriber::latest()->get(),
