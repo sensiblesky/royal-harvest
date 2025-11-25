@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\{Blog, Contact, Promotion, Subscriber, User};
 use Mockery\Matcher\Subset;
+use \App\Models\Booking;
 
 class AdminController extends Controller
 {
@@ -45,48 +46,29 @@ class AdminController extends Controller
     }
 
 
-    //PROMOTIONS HERE======================================================================================
-    public function promotions()
+    //Bookings HERE======================================================================================
+    public function bookings($status)
     {
-        return view('components.admin.promotions.promotions');
+        $results=$status==0?Booking::where('isDone',false)->get():Booking::where('isDone',true)->get();
+        // dd( $results);
+        return view('components.admin.bookings.bookings',["bookings" =>$results ]);
     }
+    
 
 
-    public function storePromotions(Request $request)
+    public function removeBooking(Booking $booking)
     {
-
-        $request->validate([
-            'large_title' => "required|string",
-            'small_title' => "required|string",
-            'image_path' => 'image|mimes:jpeg,png,jpg,gif'
-        ]);
-
-
-        $cleanedData = $request->only('large_title', 'small_title');
-
-
-        // dd($request->file('image_path')->getClientOriginalName());
-
-        if ($request->hasFile('image_path')) {
-            // $fileName=$request->file('image_path')->getClientOriginalName();
-            $cleanedData['image_path'] = $request->file('image_path')->store('hero', 'public');
-        }
-
-
-        // $promo = Promotion::create($cleanedData);
-        // dd($promo);
-
-        return back()->with('message', "Promotion created successfully!");
-    }
-
-    public function removePromotion( $promotion)
-    {
-        $promotion->delete();
+        $booking->delete();
         return back()->with('message', "Promotion deleted successfully!");
     }
-    public function clearPromotions()
+    public function updateBooking(Booking $booking)
+    {   
+        $booking->fill(['isDone'=>$booking->isDone==0?1:0])->update();
+        return back()->with('message', "Booking has been updated successfully!");
+    }
+    public function clearBookings()
     {
-        // Promotion::truncate();
+        Booking::truncate();
         return back()->with('message', "Promotion cleared successfully!");
     }
 

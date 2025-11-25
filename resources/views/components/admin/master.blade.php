@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Admin || HEET</title>
-    <link href="{{ asset('static/img/spina.png')  }}" rel="shortcut icon" />
+    <title>Admin || Royal Harvest</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset("logo.png")}}">
 
     <link rel="stylesheet" href="{{ asset('admins/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">

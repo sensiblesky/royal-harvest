@@ -26,6 +26,7 @@ class BookingController extends Controller
             'phone' => "required|string",
             'date' => "required|string",
             'time' => "required|string",
+            'service' => "required|string",
         ]);
 
 
@@ -40,7 +41,7 @@ class BookingController extends Controller
         // Pdf::loadView("components.pages.confirm");
         $booking = Booking::findOrFail($id);
         
-        $pdf = Pdf::loadView('components.pages.confirm', compact('booking'));
+        $pdf = Pdf::loadView('components.pages.pdfTemplate', compact('booking'));
         
         return $pdf->download("booking-{$booking->code}.pdf");
         

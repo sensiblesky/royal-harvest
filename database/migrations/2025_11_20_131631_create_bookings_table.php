@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('date');
             $table->string('time');
+            $table->string('service')->default('saloon');
+            $table->boolean('isDone')->default(false);
             $table->timestamps();
         });
     }

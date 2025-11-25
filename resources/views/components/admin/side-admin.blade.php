@@ -68,21 +68,30 @@
           </li>
 
 
-          <li class="nav-item has-treeview {{ Request::routeIs('admin.promotions.index') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ Request::routeIs('admin.promotions.index') ? 'active' : '' }}">
+          <li class="nav-item has-treeview {{ Request::routeIs('admin.bookings.index',0)? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::routeIs('admin.bookings.index',0) ? 'active' : '' }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-               Promotions
+               Bookings
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">
-                  {{ Request::routeIs('admin.promotions.index') ?  $users->count() : '0' }}</span>
+                  {{-- {{ Request::routeIs('admin.bookings.index',0) ?  $bookings->count() : '0' }}</span> --}}
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{Request::routeIs('admin.promotions.index') ?  '' : route("admin.promotions.index")}}" class="nav-link">
-                  <i class="far fa-circle nav-icon {{ Request::routeIs('admin.promotions.index') ? 'text-danger' : '' }} "></i>
-                  <p>All Promotions </p>
+            
+
+               <li class="nav-item">
+                <a href="{{route("admin.bookings.index",0)}}" class="nav-link">
+                  <i class="far fa-circle nav-icon {{ Request::routeIs('admin.bookings.index',0) ? 'text-danger' : '' }} "></i>
+                  <p>New Bookings </p>
+                </a>
+              </li>
+
+               <li class="nav-item">
+                <a href="{{ route("admin.bookings.index",1)}}" class="nav-link">
+                  <i class="far fa-circle nav-icon {{ Request::routeIs('admin.bookings.index',1) ? 'text-danger' : '' }} "></i>
+                  <p>Finished Bookings </p>
                 </a>
               </li>
              
@@ -90,7 +99,7 @@
           </li>
 
 
-          <li class="nav-item has-treeview {{ Request::routeIs('admin.updates.index') ? 'menu-open' : '' }}">
+          {{-- <li class="nav-item has-treeview {{ Request::routeIs('admin.updates.index') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::routeIs('admin.updates.index') ? 'active' : '' }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -132,9 +141,9 @@
               </li>
              
             </ul>
-          </li>
+          </li> --}}
 
-           <li class="nav-item has-treeview {{ Request::routeIs('admin.subscribers.index') ? 'menu-open' : '' }}">
+           {{-- <li class="nav-item has-treeview {{ Request::routeIs('admin.subscribers.index') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::routeIs('admin.subscribers.index') ? 'active' : '' }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -153,7 +162,7 @@
               </li>
              
             </ul>
-          </li>
+          </li> --}}
           
           
 

@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Royal Pixies | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('static/img/spina.png')  }}" rel="shortcut icon" />
+   <link rel="shortcut icon" type="image/x-icon" href="{{asset("logo.png")}}">
 
     <link rel="stylesheet" href="{{ asset('admins/plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admins/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
@@ -19,7 +19,7 @@
 <div class="login-box">
   <div class="login-logo">
     <img src="{{ asset('static/logo.svg')  }}" alt="" width="100">
-    <a href="../../index2.html"><b>HEET </b>Login</a>
+    <a href="../../index2.html"><b>Royal Harvest </b>Login</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -73,7 +73,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        {{-- <a href="forgot-password.html">I forgot my password</a> --}}
       </p>
       <p class="mb-0">
         {{-- <a href="register.html" class="text-center">Register a new membership</a> --}}

@@ -1,57 +1,6 @@
 <x-admin.master>
 
 
-
-
-
-    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle text-sm">Add New Hero <br>
-
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('admin.promotions.add') }}" enctype="multipart/form-data" method="POST"
-                        class="bg-white  contact-form">
-                        @csrf
-                        <div class="form-group">
-                            <input required name="large_title" type="text" class="form-control" id=""
-                                placeholder="Enter Title">
-                        </div>
-
-                        <div class="form-group">
-                            {{-- <input required name="small_title" type="text" class="form-control" id=""
-                                placeholder="Enter Content"> --}}
-                            <Textarea class="form-control" placeholder="Enter Content" name="small_title"></Textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <input required name="image_path" type="file" class="form-control" id=""
-                                placeholder="File Uploads">
-                        </div>
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-success" value="Add" />
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
     <div class="modal fade" id="clearAll" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -66,7 +15,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.promotions.clear') }}" class="bg-white  contact-form">
+                    <form action="{{ route('admin.bookings.clear') }}" class="bg-white  contact-form">
                         <div class="">
                             Are you Sure? <span style="color: rgb(205, 2, 2)"></span>
                             <strong>Clear All? </strong> ?
@@ -87,17 +36,15 @@
 
 
 
-    @if ($promotions->count())
+    @if ($bookings->count())
         <div class="card">
             <div class="card-header border-transparent">
-                <h3 class="card-title">All promotions ({{ $promotions->count() }})</h3>
+                <h3 class="card-title">All {{$bookings->first()->isDone==0? 'New':"Finished"}} Bookings ({{ $bookings->count() }})</h3>
             </div>
             <!-- /.card-body -->
             <div class="card-footer ">
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#clearAll"
                     class="btn btn-sm btn-danger float-right m-1">Clear All</a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
-                    class="btn btn-sm btn-success float-right m-1">Add</a>
             </div>
 
 
@@ -109,52 +56,57 @@
                 <div class="table-responsive">
                     <table class="table m-0">
                         <thead>
+                           
                             <tr>
                                 <th>ID</th>
-                                <th>Image</th>
-                                <th>Main Title</th>
-                                <th>Content</th>
-                                {{-- <th>Posted by</th> --}}
+                                <th>Code</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>date</th>
                                 <th>Time</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($promotions as $key => $promotion)
+                                @foreach ($bookings as $key => $booking)
                             <tr>
                                 <td>{{ ++$key }}</td>
-                                <td>
-                                    <img src="{{ asset('storage/' . $promotion->image_path) }}" 
-                                        width="50" alt="{{ asset('storage/' . $promotion->image_path) }}">
-                                </td>
-                                <td>{{ $promotion->large_title }}</td>
-                                <td>{{ $promotion->small_title }}</td>
-                                {{-- <td>{{ $promotion->email }}</td> --}}
-                                <td>{{ $promotion->created_at->diffForHumans() }}</td>
+                                
+                                <td>{{ $booking->code }}</td>
+                                <td>{{ $booking->fname }}</td>
+                                <td>{{ $booking->lname }}</td>
+                                <td>{{ $booking->email }}</td>
+                                <td>{{ $booking->phone }}</td>
+                                <td>{{ $booking->date }}</td>
+                                <td>{{ $booking->time }}</td>
+                             
+                                {{-- <td>{{ $booking->created_at->diffForHumans() }}</td> --}}
                                 <td>
 
                                     <div class="flex">
-                                        <a data-toggle="modal" data-target="#update-{{ $promotion->id }}"
-                                            class="btn btn-sm btn-primary text-white">
-                                            <i class="fa fa-edit"></i>
+                                        <a data-toggle="modal" data-target="#status-{{ $booking->id }}"
+                                            class="btn btn-sm {{$booking->isDone==0?'btn-primary':'btn-secondary'}} text-white">
+                                            <i class="fa fa-eye"></i>
                                         </a>
-                                        <a data-toggle="modal" data-target="#delete-{{ $promotion->id }}"
+                                        <a data-toggle="modal" data-target="#delete-{{ $booking->id }}"
                                             class="btn btn-sm btn-danger text-white">
                                             <i class="fa fa-archive"></i>
                                         </a>
                                     </div>
-                                    {{-- <a href="{{ asset('storage/'.$promotion->image_path)}}" download="{{ $promotion->large_title }}"  class="btn btn-primary">Link</a> --}}
+                                    {{-- <a href="{{ asset('storage/'.$booking->image_path)}}" download="{{ $booking->large_title }}"  class="btn btn-primary">Link</a> --}}
 
                                 </td>
 
-                                <div class="modal fade" id="update-{{ $promotion->id }}" tabindex="-1"
+                                 <div class="modal fade" id="status-{{ $booking->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle text-sm">
-                                                    Modify <br>
+                                                    Booking Status <br>
 
                                                 </h5>
                                                 <button type="button" class="close" data-dismiss="modal"
@@ -163,46 +115,25 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.promotion.update', $promotion) }}"
+                                                <form action="{{ route('admin.booking.update', $booking) }}"
                                                     class="bg-white  contact-form">
-                                                    @csrf
-
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <Textarea style="text-align: left"
-                                                        
-                                                        name="large_title" class="form-control" placeholder="Enter top" name="small_title">
-
-                                                            {{ $promotion->large_title  }}
-                                                        </Textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-
-                                                        <Textarea class="form-control" placeholder="Enter Content" name="small_title">
-                                                             {{ $promotion->small_title  }}
-                                                        </Textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input name="image_path" type="file"
-                                                            class="form-control" id=""
-                                                            placeholder="File Uploads">
+                                                    <div class="">
+                                                        Are you Sure? <span style="color: rgb(37, 77, 146)">Update Booking Status For </span>
+                                                        <strong>{{ $booking->fname }} </strong> ?
                                                     </div>
 
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
-                                                <input type="submit" class="btn btn-primary" value="update" />
+                                                <input type="submit" class="btn btn-primary" value="Update" />
                                             </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
 
-
-                                <div class="modal fade" id="delete-{{ $promotion->id }}" tabindex="-1"
+                                <div class="modal fade" id="delete-{{ $booking->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -217,11 +148,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.promotion.delete', $promotion) }}"
+                                                <form action="{{ route('admin.bookings.clear') }}"
                                                     class="bg-white  contact-form">
                                                     <div class="">
-                                                        Are you Sure? <span style="color: rgb(205, 2, 2)">Delete</span>
-                                                        <strong>"{{ $promotion->ip }}" </strong> ?
+                                                        Are you Sure? <span style="color: rgb(205, 2, 2)">Clear</span>
+                                                        all Bookings
                                                     </div>
 
                                             </div>
@@ -247,14 +178,11 @@
 @else
     <div class=" text-center container">
         <div class="jumbtron p-5 text-center">
+           
             <div class="error text-danger">
-                No Contacts Found!
-
-
-
+                No Booking Found!
             </div>
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
-                class="btn btn-sm btn-success  m-1">Add New Data</a>
+           
 
         </div>
     </div>

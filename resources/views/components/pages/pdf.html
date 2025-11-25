@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #c2b32e 0%, #f9f341 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #c2b32e, #939027);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #c2b32e;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+        
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .row .form-group {
+            flex: 1;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #c2b32e, #939027);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .confirmation {
+            display: none;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .confirmation h2 {
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+        
+        .confirmation-details {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .detail-value {
+            color: #333;
+        }
+        
+        .back-btn {
+            background: #95a5a6;
+            margin-top: 10px;
+        }
+        
+        .back-btn:hover {
+            background: #7f8c8d;
+        }
+        
+        @media (max-width: 480px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .header, .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Appointment Booking</h1>
+            <p>Please fill in your details to confirm your appointment</p>
+        </div>
+        
+        <div class="form-container" id="formContainer">
+            <form id="confirmationForm">
+                <div class="form-group">
+                    <label for="fname">Full Name</label>
+                    <input type="text" id="fname" name="fname" placeholder="Enter your full name">
+                    <div class="error" id="fnameError">Please enter your full name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+                    <div class="error" id="emailError">Please enter a valid email address</div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date">
+                        <div class="error" id="dateError">Please select a date</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time">
+                        <div class="error" id="timeError">Please select a time</div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Confirm Appointment</button>
+            </form>
+        </div>
+        
+        <div class="confirmation" id="confirmation">
+            <h2>Appointment Confirmed!</h2>
+            <p>Your appointment has been successfully scheduled. Details are below:</p>
+            
+            <div class="confirmation-details">
+                <div class="detail-item">
+                    <span class="detail-label">Name:</span>
+                    <span class="detail-value" id="confirmName"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value" id="confirmEmail"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Date:</span>
+                    <span class="detail-value" id="confirmDate"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Time:</span>
+                    <span class="detail-value" id="confirmTime"></span>
+                </div>
+            </div>
+            
+            <p>We've sent a confirmation email to your address.</p>
+            <button class="btn back-btn" id="backBtn">Book Another Appointment</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('confirmationForm');
+            const formContainer = document.getElementById('formContainer');
+            const confirmation = document.getElementById('confirmation');
+            const backBtn = document.getElementById('backBtn');
+            
+            // Set minimum date to today
+            const dateInput = document.getElementById('date');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset errors
+                document.querySelectorAll('.error').forEach(error => {
+                    error.style.display = 'none';
+                });
+                
+                // Get form values
+                const fname = document.getElementById('fname').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+                
+                let isValid = true;
+                
+                // Validate name
+                if (!fname) {
+                    document.getElementById('fnameError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!email || !emailRegex.test(email)) {
+                    document.getElementById('emailError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate date
+                if (!date) {
+                    document.getElementById('dateError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // Validate time
+                if (!time) {
+                    document.getElementById('timeError').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Format date for display
+                    const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    // Format time for display
+                    const formattedTime = new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', {
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: true
+                    });
+                    
+                    // Update confirmation details
+                    document.getElementById('confirmName').textContent = fname;
+                    document.getElementById('confirmEmail').textContent = email;
+                    document.getElementById('confirmDate').textContent = formattedDate;
+                    document.getElementById('confirmTime').textContent = formattedTime;
+                    
+                    // Show confirmation, hide form
+                    formContainer.style.display = 'none';
+                    confirmation.style.display = 'block';
+                }
+            });
+            
+            backBtn.addEventListener('click', function() {
+                // Reset form
+                form.reset();
+                
+                // Show form, hide confirmation
+                confirmation.style.display = 'none';
+                formContainer.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
