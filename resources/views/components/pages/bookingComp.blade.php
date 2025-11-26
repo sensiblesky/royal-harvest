@@ -105,13 +105,20 @@
                                 <div class="form-group">
                                 <label for="service">Service Type</label>
                                 <select id="service" name="service">
-                                    <option value="">Select a service</option>
-                                    <option value="manicure">Manicure</option>
-                                    <option value="pedicure">Pedicure</option>
-                                    <option value="manicure-pedicure">Manicure & Pedicure Combo</option>
-                                    <option value="gel-manicure">Gel Manicure</option>
-                                    <option value="spa-pedicure">Spa Pedicure</option>
-                                    <option value="nail-art">Nail Art</option>
+                                    <option value="null">Select a service</option>
+                                    <option value="Starter_Dreadlocks">Starter Dreadlocks</option>
+                                    <option value="Advanced_Dreadlocks">Advanced Dreadlocks</option>
+                                    <option value="Underlock_Styling">Underlock Styling</option>
+                                    <option value="Beginner-Dreadlocks">Beginner Dreadlocks</option>
+                                    <option value="Weaving-Setup">Weaving Setup</option>
+                                    <option value="Hair-Retouching">Hair Retouching</option>
+                                    <option value="Natural-Hairstyles">Natural Hairstyles</option>
+                                    <option value="Knotless-Braids">Knotless Braids</option>
+                                    <option value="Crochet-Braids">Crochet Braids</option>
+                                    <option value="Eyelash-Extensions">Eyelash Extensions</option>
+                                    <option value="Bridal-Styling">Bridal Styling</option>
+                                    <option value="Nail-Care-and-Design">Nail Care & Design</option>
+                                    <option value="Barber-Services">Barber Services</option>
                                 </select>
                             </div>
                             </div>
