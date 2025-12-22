@@ -20,14 +20,21 @@ class BookingController extends Controller
     {
         // dd($request);
         $cleanedData = $request->validate([
-            'fname' => "required|string",
-            'lname' => "required|string",
-            'email' => "required|string",
-            'phone' => "required|string",
+            'fullname' => "required|string",
+            'phone' => "required|integer|min:0",
             'date' => "required|string",
             'time' => "required|string",
             'service' => "required|string",
-        ]);
+        ],
+        [
+            'phone.integer' => "Please check your phone number and try again (Format 07xxx)",
+        ]
+    
+    );
+        if($request['email']){
+            $cleanedData['email'] =$request['email'];
+
+        }
 
 
 

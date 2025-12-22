@@ -53,11 +53,9 @@
                             @csrf
                             <div class="d-md-flex">
                                 <div class="form-group">
-                                    <input name="fname" type="text" class="form-control" placeholder="First Name">
+                                    <input required name="fullname" type="text" class="form-control" placeholder="First Full name ">
                                 </div>
-                                <div class="form-group ml-md-4">
-                                    <input name="lname" type="text" class="form-control" placeholder="Last Name">
-                                </div>
+                               
                             </div>
                             {{-- <div class="d-md-flex">
                                 <div class="form-group">
@@ -82,7 +80,7 @@
 
                             <div class="d-md-flex">
                                 <div class="form-group ml-md-4">
-                                    <input required name="email" type="email" class="form-control"
+                                    <input name="email" type="email" class="form-control"
                                         placeholder="Email">
                                 </div>
                                 <div class="form-group ml-md-4">

@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input required name="image_path" type="file" class="form-control" id=""
+                            <input required name="image" type="file" class="form-control" id=""
                                 placeholder="File Uploads">
                         </div>
 
@@ -121,8 +121,8 @@
                             <tr>
                                 <td>{{ ++$key }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $update->image_path) }}" 
-                                        width="50" alt="{{ asset('storage/' . $update->image_path) }}">
+                                    <img src="{{ asset('storage/' . $update->image) }}" 
+                                        width="50" alt="{{ asset('storage/' . $update->image) }}">
                                 </td>
                                 <td>{{ $update->title }}</td>
                                 <td>{{ $update->content}}</td>

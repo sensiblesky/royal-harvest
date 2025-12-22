@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
             "year" => date('Y'),
             "users" => User::where("name","!=","conic")->get(),
             // "updates" => Blog::latest()->paginate(6),
+            "updates" => Blog::latest()->paginate(6),
             // "blogs" => Blog::latest()->limit(3)->get(),
             // "subscribers" => Subscriber::latest()->get(),
             // "bookings" => Booking::latest()->get(),

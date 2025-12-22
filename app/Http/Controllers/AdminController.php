@@ -104,37 +104,38 @@ class AdminController extends Controller
         $request->validate([
             'title' => "required|string",
             'content' => "required|string",
-            'image_path' => 'image|mimes:jpeg,png,jpg,gif'
+            'image' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
+
+        // dd($request);
 
         $cleanedData = $request->only('title', 'content');
 
-        if ($request->hasFile('image_path')) {
+        if ($request->hasFile('image')) {
 
-            $cleanedData['image_path'] = $request->file('image_path')->store('updates', 'public');
+            $cleanedData['image'] = $request->file('image')->store('updates', 'public');
         }
 
 
-        // Blog::create($cleanedData);
+        Blog::create($cleanedData);
         return back()->with('message', "update shared successfully!");
     }
 
     public function removeUpdate($id)
     {
-        // Blog::findOrfail($id)->delete();
-        // $update->delete();
+        Blog::findOrfail($id)->delete();
         return back()->with('message', "update deleted successfully!");
     }
     public function clearUpdates()
     {
 
-        // Blog::truncate();
+        Blog::truncate();
         return back()->with('message', "Update cleared successfully!");
     }
 
     public function showUpdate($id)
     {
-        // $blog = Blog::findOrfail($id);
+        $blog = Blog::findOrfail($id);
         return view('frontend.showUpdate', ['update' => 1]);
     }
 
@@ -153,7 +154,7 @@ class AdminController extends Controller
             $cleanedData['image_path'] = $request->file('image_path')->store('updates', 'public');
         }
 
-        // Blog::findOrfail($id)->fill($cleanedData)->update();
+        Blog::findOrfail($id)->fill($cleanedData)->update();
 
         return back()->with('message', "updates updates successfully!");
     }

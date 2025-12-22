@@ -51,7 +51,7 @@
 				<li class="nav-item {{ Request::routeIs('booking.index') ? 'active' : '' }}"><a href="{{route('booking.index')}}" class="nav-link">Booking</a></li>
 	        	<li class="nav-item"><a href="" class="nav-link">Schools</a></li>
 	        	<li class="nav-item"><a href="" class="nav-link">Services</a></li>
-	        	<li class="nav-item"><a href="" class="nav-link">Blog</a></li>
+	        	<li class="nav-item"><a href="{{route('blogs.index')}}" class="nav-link">Blogs</a></li>
 	        	<li class="nav-item"><a href="" class="nav-link">About</a></li>
 	        </ul>
 	      </div>

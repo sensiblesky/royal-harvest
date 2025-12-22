@@ -15,10 +15,19 @@ Route::name('admin.')->prefix("/auth")
         Route::get('/users/add', [AdminController::class,'addUser'])->name('users.add');
         
         
-        //PROMOTIONS/HERO
+        //bookings
         Route::get('/bookings/{status}', [AdminController::class,'bookings'])->name('bookings.index');
         Route::get('/remove/{booking}', [AdminController::class,'removeBooking'])->name('booking.delete');
         Route::get('/update/{booking}', [AdminController::class,'updateBooking'])->name('booking.update');
         Route::get('/bookings/clear', [AdminController::class,'clearBookings'])->name('bookings.clear');
-
+        
+        
+        //UPDATES
+        Route::get('/updates', [AdminController::class,'updates'])->name('updates.index');
+        Route::post('/updates/add', [AdminController::class,'storeUpdates'])->name('updates.add');
+        Route::get('/updates/clear', [AdminController::class,'clearUpdates'])->name('updates.clear');
+        Route::get('/updates/update', [AdminController::class,'updateUpdate'])->name('update.update');
+        Route::get('/updates/remove', [AdminController::class,'removeUpdate'])->name('update.delete');
+        
+        
     });
