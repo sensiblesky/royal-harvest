@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{Blog, Contact, Promotion, Subscriber, User};
+use App\Models\{Blog, Contact, Programme, Promotion, Subscriber, User};
 use Mockery\Matcher\Subset;
 use \App\Models\Booking;
 
@@ -159,6 +159,9 @@ class AdminController extends Controller
         return back()->with('message', "updates updates successfully!");
     }
 
+
+
+ 
 
 
     //SUBSCRIBERS HERE======================================================================================

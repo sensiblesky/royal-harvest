@@ -127,6 +127,54 @@
 
                     </ul>
                 </li>
+                <li class="nav-item has-treeview {{ Request::routeIs('admin.programmes.index') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::routeIs('admin.programmes.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Programmes
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right">
+                                {{ Request::routeIs('admin.programmes.index') ? $users->count() : '' }}</span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ Request::routeIs('admin.programmes.index') ? '' : route('admin.programmes.index') }}"
+                                class="nav-link">
+                                <i
+                                    class="far fa-circle nav-icon {{ Request::routeIs('admin.programmes.index') ? 'text-danger' : '' }} "></i>
+                                <p>All</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview {{ Request::routeIs('admin.updates.index') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::routeIs('admin.updates.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Candidates
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right">
+                                {{ Request::routeIs('admin.updates.index') ? $users->count() : '' }}</span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ Request::routeIs('admin.updates.index') ? '' : route('admin.updates.index') }}"
+                                class="nav-link">
+                                <i
+                                    class="far fa-circle nav-icon {{ Request::routeIs('admin.updates.index') ? 'text-danger' : '' }} "></i>
+                                <p>All</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                
+                
+                
+                
                 {{--
 
 

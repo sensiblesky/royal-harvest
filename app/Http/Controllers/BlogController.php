@@ -13,8 +13,8 @@ class BlogController extends Controller
     }
     public function show($id)
     {
-        $blog = Blog::latest()->get();
-        return view('blogs.show_blog', ['blog' => $blog]);
+        $blog = Blog::findOrfail($id);
+        return view('blogs.show_blog', ['update' => $blog]);
     }
 
     public function clear()

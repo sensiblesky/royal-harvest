@@ -21,7 +21,14 @@ class BookingController extends Controller
         // dd($request);
         $cleanedData = $request->validate([
             'fullname' => "required|string",
-            'phone' => "required|integer|min:0",
+            'phone' => [
+                'required',
+                'string',
+                'min:10',
+                'max:13',
+                'regex:/^(?=.*\d)[A-Za-z0-9][A-Za-z0-9]{9,12}$/'
+            ],
+            // 'phone' => "required|integer|min:0",
             'date' => "required|string",
             'time' => "required|string",
             'service' => "required|string",
@@ -61,5 +68,17 @@ class BookingController extends Controller
         $pdf = Pdf::loadView('bookings.pdf', compact('booking'));
         
         return $pdf->stream("booking-{$booking->unique_code}.pdf");
+    }
+
+     public function indexApply(Request $request)
+    {
+        return view('components.pages.applyform');
+    }
+    public function storeApply()
+    {
+
+    }
+    public function programme(){
+        return view('components.pages.program-index');
     }
 }
