@@ -84,21 +84,7 @@
                                 <div class="form-group">
                                     <label for="service">Programme</label>
                                     <select id="service" name="programme_id">
-                                        <option value="null" disabled selected>Select a Programme</option>
-                                        {{-- <option value="Starter_Dreadlocks">Starter Dreadlocks</option>
-                                    <option value="Advanced_Dreadlocks">Advanced Dreadlocks</option>
-                                    <option value="Underlock_Styling">Underlock Styling</option>
-                                    <option value="Beginner-Dreadlocks">Beginner Dreadlocks</option>
-                                    <option value="Weaving-Setup">Weaving Setup</option>
-                                    <option value="Hair-Retouching">Hair Retouching</option>
-                                    <option value="Natural-Hairstyles">Natural Hairstyles</option>
-                                    <option value="Knotless-Braids">Knotless Braids</option>
-                                    <option value="Crochet-Braids">Crochet Braids</option>
-                                    <option value="Eyelash-Extensions">Eyelash Extensions</option>
-                                    <option value="Bridal-Styling">Bridal Styling</option>
-                                    <option value="Nail-Care-and-Design">Nail Care & Design</option>
-                                    <option value="Barber-Services">Barber Services</option> --}}
-
+                                        {{-- <option value="1" disabled selected>Select a Programme</option> --}}
                                         @foreach ($programmes as $key => $programme)
                                          <option  value="{{$programme->id}}">{{$programme->name}}</option>
                                         @endforeach
