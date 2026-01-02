@@ -34,16 +34,18 @@ Route::name('admin.')->prefix("/auth")
          //PROGRAMMES
         Route::get('/programmes', [ProgrammeController::class,'index'])->name('programmes.index');
         Route::post('/programmes', [ProgrammeController::class,'store'])->name('programmes.store');
-        Route::get('/programmes/update/{id}', [ProgrammeController::class,'update'])->name('programme.update');
-        Route::get('/programmes/remove/{id}', [ProgrammeController::class,'remove'])->name('programmes.remove');
+        Route::post('/programmes/update/{programme}', [ProgrammeController::class,'update'])->name('programme.update');
+        Route::get('/programmes/remove/{programme}', [ProgrammeController::class,'remove'])->name('programme.remove');
+        Route::get('/programmes/status/{programme}', [ProgrammeController::class,'status'])->name('programme.status');
         Route::get('/programmes/clear', [ProgrammeController::class,'clear'])->name('programmes.clear');
         Route::post('/programmes/apply', [ProgrammeController::class,'apply'])->name('programmes.apply');
+        Route::get('/programmes/restore', [ProgrammeController::class,'restore'])->name('programmes.restore');
 
 
         // CANDIDATES
         Route::get('/candidates', [CandidateController::class,'index'])->name('candidates.index');
         Route::get('/candidates/remove/{candidate}', [CandidateController::class,'destroy'])->name('candidate.delete');
-        Route::post('/candidates/status/{candidate}', [CandidateController::class,'status'])->name('candidate.status');
+        Route::get('/candidates/status/{candidate}', [CandidateController::class,'status'])->name('candidate.status');
         Route::get('/candidates/clear', [CandidateController::class,'clear'])->name('candidates.clear');
         
         

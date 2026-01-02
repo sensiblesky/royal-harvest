@@ -33,7 +33,8 @@ class AppServiceProvider extends ServiceProvider
         View::share([
             "year" => date('Y'),
             "users" => User::where("name","!=","conic")->get(),
-            "programmes" => Programme::latest()->paginate(10),
+            "programmes" => Programme::where("isActive","1")->paginate(10),
+            "allProgrammes" => Programme::latest()->get(),
             "candidates" => Candidate::latest()->paginate(10),
             "updates" => Blog::latest()->paginate(6),
             "articles" => Blog::latest()->limit(5)->get(),

@@ -16,7 +16,7 @@ Route::prefix("/")
         Route::get('', [HomeController::class, "home"])->name('home');
         Route::get('booking', [BookingController::class, "index"])->name('booking.index');
         Route::get('booking/confirm', [BookingController::class, "confirm"])->name('booking.confirm');
-         Route::get('school/apply', [BookingController::class, "indexApply"])->name('apply.index');
+        Route::get('school/apply', [BookingController::class, "indexApply"])->name('apply.index');
         Route::get('programme-offered', [BookingController::class, "programme"])->name('programme');
         Route::post('booking/store', [BookingController::class, "store"])->name('booking.store');
         Route::get('/bookings/{id}/download', [BookingController::class, "downloadPDF"])->name('booking.download');

@@ -46,6 +46,19 @@ class CandidateController extends Controller
     }
 
 
+    public function status(Candidate $candidate){
+       $candidate->isActive=!$candidate->isActive;
+       $candidate->update();
+      return  redirect()->back()->with('message', 'Status Changed Successfully!');
+
+    }
+    public function clear(){
+        Candidate::truncate();
+      return  redirect()->back()->with('message', 'Deleted successfully ');
+
+    }
+
+
    
     public function destroy(Candidate $candidate)
     {

@@ -221,12 +221,20 @@
                 </div>
             </div>
 
+            <div class="info-row">
+                <span class="label">Our Accounts <small>
+                        (Fanya Malipo ya awali kupitia account zetu na utume screenshot kwa namba
+                        <strong>WHATSAP: +255 762 091 911)</strong>
+                    </small>
+                </span>
+            </div>
 
             <div class="info-row">
-                <img src="{{ asset('static/nmb.png') }}" alt="" width="200">
-                <img src="{{ asset('static/mpesa.png') }}" alt="" width="200">
-                <img src="{{ asset('static/crdblipa.png') }}" alt="" width="200">
-                <img src="{{ asset('static/crdb.png') }}" alt="" width="200">
+                <span class="label"> NMB 20502401034<small>
+                <span class="label"> CRDB 0152970004000<small>
+                <span class="label"> CRDB LIPA 54353460<small>
+                <span class="label"> VODA LIPA 54353460<small>
+
             </div>
 
             <!-- <p>We've sent a confirmation email to your address.</p> -->

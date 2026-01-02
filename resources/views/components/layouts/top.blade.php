@@ -94,6 +94,10 @@
                     
                 <li class="nav-item {{ Request::routeIs('blogs.index') ? 'active' : '' }}"><a href="{{route('blogs.index')}}" class="nav-link">Blogs</a></li>
                 @endif
+                @auth
+                <li class="nav-item"><a href="{{route('admin.index')}}" class="nav-link">Admin</a></li>
+                    
+                @endauth
                 <li class="nav-item"><a href="{{route('about.index')}}" class="nav-link">About</a></li>
             </ul>
         </div>

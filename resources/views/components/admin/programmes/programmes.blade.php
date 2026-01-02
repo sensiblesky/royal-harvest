@@ -77,7 +77,38 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <input type="submit" class="btn btn-danger" value="Clear" />
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="restoreAll" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle text-sm">
+                        Restore All <br>
+
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.programmes.restore') }}" class="bg-white  contact-form">
+                        <div class="">
+                            Are you Sure? <span style="color: rgb(205, 2, 2)"></span>
+                            <strong>Restore Default Programmes? </strong> ?
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-warning" value="Restore" />
                 </div>
                 </form>
             </div>
@@ -89,10 +120,10 @@
 
 
 
-    @if ($programmes->count())
+    @if ($allProgrammes->count())
         <div class="card">
             <div class="card-header border-transparent">
-                <h3 class="card-title">All Updates ({{ $programmes->count() }})</h3>
+                <h3 class="card-title">All Updates ({{ $allProgrammes->count() }})</h3>
             </div>
             <!-- /.card-body -->
             <div class="card-footer ">
@@ -100,6 +131,8 @@
                     class="btn btn-sm btn-danger float-right m-1">Clear All</a>
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
                     class="btn btn-sm btn-success float-right m-1">Add</a>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#restoreAll"
+                    class="btn btn-sm btn-success float-right m-1">Restore</a>
             </div>
 
 
@@ -123,7 +156,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($programmes as $key => $programme)
+                                @foreach ($allProgrammes as $key => $programme)
                             <tr>
                                 <td>{{ ++$key }}</td>
                                 {{-- <td>
@@ -143,6 +176,12 @@
                                             class="btn btn-sm btn-primary text-white">
                                             <i class="fa fa-edit"></i>
                                         </a>
+
+                                        <a data-toggle="modal" data-target="#status-{{ $programme->id }}"
+                                            class="btn btn-sm {{ $programme->isActive ? 'btn-primary' : 'btn-secondary' }} text-white">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+
                                         <a data-toggle="modal" data-target="#delete-{{ $programme->id }}"
                                             class="btn btn-sm btn-danger text-white">
                                             <i class="fa fa-archive"></i>
@@ -167,31 +206,26 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.update.update', $programme->id) }}"
-                                                    class="bg-white  contact-form" enctype="multipart/form-data">
+                                                <form action="{{ route('admin.programme.update',$programme) }}"
+                                                    enctype="multipart/form-data" method="POST"
+                                                    class="bg-white  contact-form">
                                                     @csrf
                                                     <div class="form-group">
                                                         <input required name="name" type="text"
-                                                            class="form-control" id="" value="{{$programme->name}}"
-                                                            placeholder="Enter Programme Name">
+                                                            class="form-control" id=""
+                                                            placeholder="Enter Programme Name" value="{{$programme->name}}">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <input required name="cost" type="text"
-                                                            class="form-control" id="" value="{{$programme->cost}}"
-                                                            placeholder="Enter Programme Cost">
+                                                            class="form-control" id=""
+                                                            placeholder="Enter Programme Cost" value="{{$programme->cost}}">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <input required name="duration" type="text"
-                                                            class="form-control" id="" value="{{$programme->duration}}"
-                                                            placeholder="Enter Programme Duration">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <Label>Is Active</Label>
-                                                        <input required name="duration" type="checkbox"
-                                                            class="form-control" id="" value="{{$programme->isActive}}"
-                                                            placeholder="Enter Programme Duration">
+                                                            class="form-control" id=""
+                                                            placeholder="Enter Programme Duration" value="{{$programme->duration}}">
                                                     </div>
 
 
@@ -200,6 +234,45 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Close</button>
                                                 <input type="submit" class="btn btn-primary" value="update" />
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="modal fade" id="status-{{ $programme->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalScrollableTitle text-sm">
+                                                    Update Program Status <br>
+
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+
+                                            <div class="modal-body">
+                                                <form action="{{ route('admin.programme.status', $programme) }}"
+                                                    class="bg-white  contact-form">
+                                                    <div class="">
+                                                        Are you Sure? <span
+                                                            style="color: rgb(255, 114, 14)">Update</span>
+                                                        <strong>"{{ $programme->name }}" </strong> ?
+                                                    </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-warning" value="Update" />
                                             </div>
                                             </form>
                                         </div>
@@ -224,11 +297,11 @@
 
 
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.update.delete', $programme->id) }}"
+                                                <form action="{{ route('admin.programme.remove', $programme) }}"
                                                     class="bg-white  contact-form">
                                                     <div class="">
                                                         Are you Sure? <span style="color: rgb(205, 2, 2)">Delete</span>
-                                                        <strong>"{{ $programme->ip }}" </strong> ?
+                                                        <strong>"{{ $programme->name }}" </strong> ?
                                                     </div>
 
                                             </div>
@@ -262,6 +335,8 @@
             </div>
             <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
                 class="btn btn-sm btn-success  m-1">Add Programme</a>
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#restoreAll"
+                class="btn btn-sm btn-success  m-1">Restore Programme</a>
 
         </div>
     </div>

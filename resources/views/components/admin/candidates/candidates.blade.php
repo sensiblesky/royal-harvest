@@ -62,7 +62,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.updates.clear') }}" class="bg-white  contact-form">
+                    <form action="{{ route('admin.candidates.clear') }}" class="bg-white  contact-form">
                         <div class="">
                             Are you Sure? <span style="color: rgb(205, 2, 2)"></span>
                             <strong>Clear All? </strong> ?
@@ -92,8 +92,8 @@
             <div class="card-footer ">
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#clearAll"
                     class="btn btn-sm btn-danger float-right m-1">Clear All</a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
-                    class="btn btn-sm btn-success float-right m-1">Add</a>
+                {{-- <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
+                    class="btn btn-sm btn-success float-right m-1">Add</a> --}}
             </div>
 
 
@@ -127,15 +127,15 @@
                                 <td>{{ $candidate->last }}</td>
                                 <td>{{ $candidate->phone }}</td>
                                 <td>{{ $candidate->email }}</td>
-                                <td>{{ $candidate->programme->name }}</td>
+                                <td>{{ $candidate->programme->name??"[Not Assigned]" }}</td>
                                 {{-- <td>{{ $candidate->email }}</td> --}}
                                 <td>{{ $candidate->created_at->diffForHumans() }}</td>
                                 <td>
 
                                     <div class="flex">
                                         <a data-toggle="modal" data-target="#update-{{ $candidate->id }}"
-                                            class="btn btn-sm btn-primary text-white">
-                                            <i class="fa fa-edit"></i>
+                                            class="btn btn-sm {{  $candidate->isActive?'btn-primary':"btn-secondary" }} text-white">
+                                            <i class="fa fa-eye"></i>
                                         </a>
                                         <a data-toggle="modal" data-target="#delete-{{ $candidate->id }}"
                                             class="btn btn-sm btn-danger text-white">
@@ -152,7 +152,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalScrollableTitle text-sm">
-                                                    Modify <br>
+                                                    Update Status <br>
 
                                                 </h5>
                                                 <button type="button" class="close" data-dismiss="modal"
@@ -160,27 +160,16 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
+                                           
                                             <div class="modal-body">
                                                 <form action="{{ route('admin.candidate.status', $candidate->id) }}"
                                                     class="bg-white  contact-form" enctype="multipart/form-data">
                                                     @csrf
-                                                    <div class="form-group">
-                                                        <input type="text" name="title" class="form-control"
-                                                            placeholder="" value="{{ $candidate->first }}" />
-
+                                                    <div class="">
+                                                        Are you Sure? <span style="color: rgb(205, 2, 2)">Update Status</span>
+                                                        <strong>"{{ $candidate->first }}" </strong> ?
                                                     </div>
-
-                                                    <div class="form-group">
-
-                                                        <Textarea class="form-control" placeholder="Enter Content" name="content" rows="4">
-                                                             {{ $candidate->content }}
-                                                        </Textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input name="image_path" type="file" class="form-control"
-                                                            id="" placeholder="File Uploads">
-                                                    </div>
+                                                    
 
                                             </div>
                                             <div class="modal-footer">
@@ -242,13 +231,13 @@
     <div class=" text-center container">
         <div class="jumbtron p-5 text-center">
             <div class="error text-danger">
-                No updates Found!
+                No Candidates Found!
 
 
 
             </div>
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
-                class="btn btn-sm btn-success  m-1">Add New Data</a>
+            {{-- <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
+                class="btn btn-sm btn-success  m-1">Add New Data</a> --}}
 
         </div>
     </div>

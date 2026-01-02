@@ -65,71 +65,73 @@
          }
      </style>
 
-     <section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb"
-         style="background-image: url({{ asset('static/images/bg_5.jpg') }});" data-stellar-background-ratio="0.5">
-         <div class="overlay"></div>
 
-         <div class="container">
-             <div class="row justify-content-end">
-                 <div class="col-md-6 py-5 px-md-5">
-                     <div class="py-md-5">
+    
 
-                         <!-- Heading -->
-                         <div class="heading-section heading-section-white ftco-animate mb-5">
-                             <h4 class="mb-4">Programmes Offered</h2>
-                         </div>
 
-                         <!-- Programme Table -->
-                         <div class="programme-table ftco-animate">
+         <section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb"
+             style="background-image: url({{ asset('static/images/bg_5.jpg') }});" data-stellar-background-ratio="0.5">
+             <div class="overlay"></div>
 
-                             <div class="table-header">
-                                 <div>#</div>
-                                 <div>Programme Name</div>
-                                 <div>Programme Cost</div>
-                                 <div>Duration</div>
+             <div class="container">
+                 <div class="row justify-content-end">
+                     <div class="col-md-6 py-5 px-md-5">
+                         <div class="py-md-5">
+
+                             <!-- Heading -->
+                             <div class="heading-section heading-section-white ftco-animate mb-5">
+                                 <h4 class="mb-4">Programmes Offered</h2>
                              </div>
+@if ($programmes->count())
+    
+                  
+                             <div class="programme-table ftco-animate">
 
-                             {{-- Example row (replace with dynamic data) --}}
-                             @foreach ($programmes as $key => $programme)
-                                 <div class="table-row">
-                                     <div>{{ ++$key }}</div>
-                                     <div>{{ $programme->name }}</div>
-                                     <div>{{ $programme->cost }}</div>
-                                     <div>{{ $programme->duration }}</div>
+                                 <div class="table-header">
+                                     <div>#</div>
+                                     <div>Programme Name</div>
+                                     <div>Programme Cost</div>
+                                     <div>Duration</div>
                                  </div>
-                             @endforeach
-                             <div class="d-flex justify-content-between m-3">
-            @if($programmes->onFirstPage())
-                <span class="text-muted">← Previous</span>
-            @else
-                <a href="{{ $programmes->previousPageUrl() }}">← Previous</a>
-            @endif
-            
-            @if($programmes->hasMorePages())
-                <a href="{{ $programmes->nextPageUrl() }}">Next →</a>
-            @else
-                <span class="text-muted">Next →</span>
-            @endif
-        </div>
 
-                             {{-- Add more rows dynamically --}}
-                             {{--
-                            @foreach ($programmes as $programme)
-                                <div class="table-row">
-                                    <div>{{ $loop->iteration }}</div>
-                                    <div>{{ $programme->name }}</div>
-                                    <div>{{ $programme->cost }}</div>
-                                    <div>{{ $programme->duration }}</div>
-                                </div>
-                            @endforeach
-                            --}}
+                                 {{-- Example row (replace with dynamic data) --}}
+                                 @foreach ($programmes as $key => $programme)
+                                     <div class="table-row">
+                                         <div>{{ $loop->iteration }}</div>
+                                         <div>{{ $programme->name }}</div>
+                                         <div>{{ $programme->cost }}</div>
+                                         <div>{{ $programme->duration }}</div>
+                                     </div>
+                                 @endforeach
+                                 <div class="d-flex justify-content-between m-3">
+                                     @if ($programmes->onFirstPage())
+                                         <span class="text-muted">← Previous</span>
+                                     @else
+                                         <a href="{{ $programmes->previousPageUrl() }}">← Previous</a>
+                                     @endif
+
+                                     @if ($programmes->hasMorePages())
+                                         <a href="{{ $programmes->nextPageUrl() }}">Next →</a>
+                                     @else
+                                         <span class="text-muted">Next →</span>
+                                     @endif
+                                 </div>
+
+                                
+                           
+
+                             </div>
+                             @endif
+          
 
                          </div>
-
                      </div>
                  </div>
              </div>
-         </div>
-     </section>
 
+
+         </section>
+
+
+    
  </x-layouts.base>

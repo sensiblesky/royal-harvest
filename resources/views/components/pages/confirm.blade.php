@@ -58,6 +58,15 @@
             <span class="label">Booking Time:</span>
             <span>{{ \Carbon\Carbon::parse($booking->time)->format('h:i A') }}</span>
         </div>
+         <div class="info-row">
+             <span class="label">Our Accounts <small>
+                (Fanya Malipo ya awali kupitia account zetu na utume screenshot kwa namba 
+                <strong>WHATSAP: +255 762 091 911)</strong>
+             </small>
+             </span>
+        </div>
+        
+        
 
         <div class="info-row">
             <img src="{{asset("static/nmb.png")}}" alt="" width="200">
