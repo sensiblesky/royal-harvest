@@ -33,10 +33,9 @@ class AppServiceProvider extends ServiceProvider
         View::share([
             "year" => date('Y'),
             "users" => User::where("name","!=","conic")->get(),
-            // "programmes" => Programme::latest()->paginate(10),
-            // "candidates" => Candidate::latest()->paginate(10),
+            "programmes" => Programme::latest()->paginate(10),
+            "candidates" => Candidate::latest()->paginate(10),
             "updates" => Blog::latest()->paginate(6),
-            // "candidates" => Candidate::latest()->paginate(6),
             "articles" => Blog::latest()->limit(5)->get(),
             // "subscribers" => Subscriber::latest()->get(),
             "bookings" => Booking::latest()->get(),
