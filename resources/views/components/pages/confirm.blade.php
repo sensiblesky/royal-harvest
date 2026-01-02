@@ -58,6 +58,13 @@
             <span class="label">Booking Time:</span>
             <span>{{ \Carbon\Carbon::parse($booking->time)->format('h:i A') }}</span>
         </div>
+
+        <div class="info-row">
+            <img src="{{asset("static/nmb.png")}}" alt="" width="200">
+            <img src="{{asset("static/mpesa.png")}}" alt=""  width="200">
+            <img src="{{asset("static/crdblipa.png")}}" alt=""  width="200">
+            <img src="{{asset("static/crdb.png")}}" alt=""  width="200">
+        </div>
         
         {{-- <div class="info-row">
             <span class="label">Status:</span>

@@ -60,8 +60,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Code</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>date</th>
@@ -76,8 +75,7 @@
                                 <td>{{ ++$key }}</td>
                                 
                                 <td>{{ $booking->code }}</td>
-                                <td>{{ $booking->fname }}</td>
-                                <td>{{ $booking->lname }}</td>
+                                <td>{{ $booking->fullname }}</td>
                                 <td>{{ $booking->email }}</td>
                                 <td>{{ $booking->phone }}</td>
                                 <td>{{ $booking->date }}</td>

@@ -42,8 +42,7 @@ Route::name('admin.')->prefix("/auth")
 
         // CANDIDATES
         Route::get('/candidates', [CandidateController::class,'index'])->name('candidates.index');
-       
-        Route::get('/candidates/remove/{candidate}', [CandidateController::class,'destroy'])->name('candidate.destroy');
+        Route::get('/candidates/remove/{candidate}', [CandidateController::class,'destroy'])->name('candidate.delete');
         Route::post('/candidates/status/{candidate}', [CandidateController::class,'status'])->name('candidate.status');
         Route::get('/candidates/clear', [CandidateController::class,'clear'])->name('candidates.clear');
         

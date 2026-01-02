@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // if (\Schema::hasTable('users'))
 
         View::share([
             "year" => date('Y'),

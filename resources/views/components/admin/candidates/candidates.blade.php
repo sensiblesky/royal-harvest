@@ -86,7 +86,7 @@
     @if ($candidates->count())
         <div class="card">
             <div class="card-header border-transparent">
-                <h3 class="card-title">All Updates  ({{ $candidates->count() }})</h3>
+                <h3 class="card-title">All Candidates  ({{ $candidates->count() }})</h3>
             </div>
             <!-- /.card-body -->
             <div class="card-footer ">
@@ -122,12 +122,12 @@
                                 @foreach ($candidates as $key => $candidate)
                             <tr>
                                 <td>{{ ++$key }}</td>
-                                
+
                                 <td>{{ $candidate->first }}</td>
-                                <td>{{ $candidate->last}}</td>
-                                <td>{{ $candidate->phone}}</td>
-                                <td>{{ $candidate->email}}</td>
-                                <td>{{ $candidate->programme->name}}</td>
+                                <td>{{ $candidate->last }}</td>
+                                <td>{{ $candidate->phone }}</td>
+                                <td>{{ $candidate->email }}</td>
+                                <td>{{ $candidate->programme->name }}</td>
                                 {{-- <td>{{ $candidate->email }}</td> --}}
                                 <td>{{ $candidate->created_at->diffForHumans() }}</td>
                                 <td>
@@ -161,27 +161,25 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.update.update', $candidate->id) }}"
+                                                <form action="{{ route('admin.candidate.status', $candidate->id) }}"
                                                     class="bg-white  contact-form" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
-                                                        <input type="text" 
-                                                        
-                                                        name="title" class="form-control" placeholder="" value="{{ $candidate->title  }}"/>
-                                                    
+                                                        <input type="text" name="title" class="form-control"
+                                                            placeholder="" value="{{ $candidate->first }}" />
+
                                                     </div>
 
                                                     <div class="form-group">
 
                                                         <Textarea class="form-control" placeholder="Enter Content" name="content" rows="4">
-                                                             {{ $candidate->content  }}
+                                                             {{ $candidate->content }}
                                                         </Textarea>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <input name="image_path" type="file"
-                                                            class="form-control" id=""
-                                                            placeholder="File Uploads">
+                                                        <input name="image_path" type="file" class="form-control"
+                                                            id="" placeholder="File Uploads">
                                                     </div>
 
                                             </div>
@@ -213,11 +211,11 @@
 
 
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.update.delete', $candidate->id) }}"
+                                                <form action="{{ route('admin.candidate.delete', $candidate) }}"
                                                     class="bg-white  contact-form">
                                                     <div class="">
                                                         Are you Sure? <span style="color: rgb(205, 2, 2)">Delete</span>
-                                                        <strong>"{{ $candidate->ip }}" </strong> ?
+                                                        <strong>"{{ $candidate->first }}" </strong> ?
                                                     </div>
 
                                             </div>

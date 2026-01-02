@@ -50,5 +50,6 @@ class CandidateController extends Controller
     public function destroy(Candidate $candidate)
     {
         $candidate->delete();
+      return  redirect()->back()->with('message', 'Deleted successfully ');
     }
 }
