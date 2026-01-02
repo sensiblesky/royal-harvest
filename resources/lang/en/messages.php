@@ -15,5 +15,6 @@ return [
     'dashboard' => 'Dashboard',
     'logout' => 'Logout',
     'book_now' => 'Book Now', // Added
+     'prog_name' => 'Enter Program Name',
 
 ];

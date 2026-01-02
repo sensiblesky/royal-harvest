@@ -14,5 +14,6 @@ return [
     'change_language' => 'Badilisha Lugha',
     'dashboard' => 'Dashibodi',
     'logout' => 'Toka',
+    'prog_name' => 'Jina la Programmu',
 
 ];

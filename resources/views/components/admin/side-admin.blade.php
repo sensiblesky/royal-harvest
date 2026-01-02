@@ -161,10 +161,10 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ Request::routeIs('admin.updates.index') ? '' : route('admin.updates.index') }}"
+                            <a href="{{ Request::routeIs('admin.candidates.index') ? '' : route('admin.candidates.index') }}"
                                 class="nav-link">
                                 <i
-                                    class="far fa-circle nav-icon {{ Request::routeIs('admin.updates.index') ? 'text-danger' : '' }} "></i>
+                                    class="far fa-circle nav-icon {{ Request::routeIs('admin.candidates.index') ? 'text-danger' : '' }} "></i>
                                 <p>All</p>
                             </a>
                         </li>

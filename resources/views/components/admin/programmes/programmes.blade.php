@@ -27,10 +27,11 @@
                         </div>
 
                         <div class="form-group">
-                            <input required name="duration" type="text" class="form-control" id="" placeholder="Enter Programme Duration">
+                            <input required name="duration" type="text" class="form-control" id=""
+                                placeholder="Enter Programme Duration">
                         </div>
 
-                        
+
 
                         {{-- <div class="form-group">
                             <input required name="image" type="file" class="form-control" id=""
@@ -132,7 +133,7 @@
                                 <td>{{ $programme->name }}</td>
                                 <td>{{ $programme->cost }}</td>
                                 <td>{{ $programme->duration }}</td>
-                                <td>{{ $programme->isActive==1?"active":'Inactive' }}</td>
+                                <td>{{ $programme->isActive == 1 ? 'active' : 'Inactive' }}</td>
                                 {{-- <td>{{ $programme->email }}</td> --}}
                                 <td>{{ $programme->created_at->diffForHumans() }}</td>
                                 <td>
@@ -170,22 +171,29 @@
                                                     class="bg-white  contact-form" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
-                                                        <input type="text" name="title" class="form-control"
-                                                            placeholder="" value="{{ $programme->title }}" />
-
+                                                        <input required name="name" type="text"
+                                                            class="form-control" id="" value="{{$programme->name}}"
+                                                            placeholder="Enter Programme Name">
                                                     </div>
 
                                                     <div class="form-group">
-
-                                                        <Textarea class="form-control" placeholder="Enter Content" name="content" rows="4">
-                                                             {{ $programme->content }}
-                                                        </Textarea>
+                                                        <input required name="cost" type="text"
+                                                            class="form-control" id="" value="{{$programme->cost}}"
+                                                            placeholder="Enter Programme Cost">
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <input name="image_path" type="file" class="form-control"
-                                                            id="" placeholder="File Uploads">
+                                                        <input required name="duration" type="text"
+                                                            class="form-control" id="" value="{{$programme->duration}}"
+                                                            placeholder="Enter Programme Duration">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <Label>Is Active</Label>
+                                                        <input required name="duration" type="checkbox"
+                                                            class="form-control" id="" value="{{$programme->isActive}}"
+                                                            placeholder="Enter Programme Duration">
+                                                    </div>
+
 
                                             </div>
                                             <div class="modal-footer">

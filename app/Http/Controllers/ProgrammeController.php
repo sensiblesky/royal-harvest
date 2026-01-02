@@ -12,24 +12,24 @@ class ProgrammeController extends Controller
 
 
     //
-    public function index()  {
-         return view('components.admin.programmes.programmes');
-        
+    public function index()
+    {
+        return view('components.admin.programmes.programmes');
     }
 
-    public function remove($id)  {
+    public function remove($id)
+    {
         Programme::findOrfail($id)->delete();
-        redirect()->back()->with('message','Deleted Successfully');
-        
+        redirect()->back()->with('message', 'Deleted Successfully');
     }
-    public function status($id)  {
-        $prog=Programme::findOrfail($id);
-        $prog->isActive=!$prog->isActive;
+    public function status($id)
+    {
+        $prog = Programme::findOrfail($id);
+        $prog->isActive = !$prog->isActive;
         $prog->update();
-       return redirect()->back()->with('message','Deleted Successfully');
-        
+        return redirect()->back()->with('message', 'Deleted Successfully');
     }
-     public function store(Request $request)
+    public function store(Request $request)
     {
 
         $cleanedData = $request->validate([
@@ -41,32 +41,18 @@ class ProgrammeController extends Controller
         return back()->with('message', "Programme created successfully!");
     }
 
-    public function update(Request $request, $id)  {
-        $validated=$request->validate([
-            'name'=>"required|string",
-            'cost'=>"required|string",
-            'duration'=>"required|string"
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => "required|string",
+            'cost' => "required|string",
+            'duration' => "required|string"
         ]);
-        $prog=Programme::findOrfail($id);
-        $prog->fill($validated)-> update();
-       return redirect()->back()->with('message','updated Successfully');
-        
+        $prog = Programme::findOrfail($id);
+        $prog->fill($validated)->update();
+        return redirect()->back()->with('message', 'updated Successfully');
     }
 
 
-    public function apply($request) {
-         $validated = $request->validate([
-            'first' => 'required|string|max:255',
-            'last' => 'required|string|max:255',
-            'email' => 'nullable|email|unique:candidates',
-            'phone' => 'required|string',
-            'programme_id' => 'nullable|exists:programmes,id',
-        ]);
-
-        Candidate::create($validated);
-
-        return redirect()->back()
-                         ->with('success', 'Candidate created successfully.');
-        
-    }
+  
 }

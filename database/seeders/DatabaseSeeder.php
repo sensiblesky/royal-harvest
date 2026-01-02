@@ -33,5 +33,28 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('royalHarvest25'),
         ]);
+
+
+
+
+        \App\Models\Programme::create(['name' => 'Starter Dreadlocks','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Advanced Dreadlocks','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Underlock Styling','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Beginner Dreadlocks','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Weaving Setup','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Hair Retouching','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Natural Hairstyles','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Knotless Braids','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Crochet Braids','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Eyelash Extensions','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Bridal Styling','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Nail Care & Design','cost' => '$500','duration' =>"3 Month",]);
+        \App\Models\Programme::create(['name' => 'Barber Services','cost' => '$500','duration' =>"3 Month",]);
+
+
+
+
+
+
     }
 }

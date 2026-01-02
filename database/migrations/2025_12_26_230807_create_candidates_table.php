@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('first');
             $table->string('last');
-            $table->string('email')->unique()->nullable();
+            $table->string('phone');
+            $table->string('email')->nullable();
 
             $table->boolean('isActive')->default(true);
             $table->timestamps();

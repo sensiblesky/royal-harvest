@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ProgrammeController;
 
 Route::name('admin.')->prefix("/auth")
@@ -39,13 +40,15 @@ Route::name('admin.')->prefix("/auth")
         Route::post('/programmes/apply', [ProgrammeController::class,'apply'])->name('programmes.apply');
 
 
-        //CANDIDATES
-        // Route::get('/candidates', [ProgrammeController::class,'index'])->name('candidates.index');
-        // Route::post('/candidates', [ProgrammeController::class,'store'])->name('candidates.store');
-        // Route::get('/candidates/update/{id}', [ProgrammeController::class,'update'])->name('programme.update');
-        // Route::get('/candidates/remove/{id}', [ProgrammeController::class,'remove'])->name('candidates.remove');
-        // Route::get('/candidates/clear', [ProgrammeController::class,'clear'])->name('candidates.clear');
-        // Route::post('/candidates/apply', [ProgrammeController::class,'apply'])->name('candidates.apply');
+        // CANDIDATES
+        Route::get('/candidates', [CandidateController::class,'index'])->name('candidates.index');
+       
+        Route::get('/candidates/remove/{candidate}', [CandidateController::class,'destroy'])->name('candidate.destroy');
+        Route::post('/candidates/status/{candidate}', [CandidateController::class,'status'])->name('candidate.status');
+        Route::get('/candidates/clear', [CandidateController::class,'clear'])->name('candidates.clear');
         
         
     });
+
+
+ 

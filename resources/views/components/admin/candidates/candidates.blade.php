@@ -83,10 +83,10 @@
 
 
 
-    @if ($updates->count())
+    @if ($candidates->count())
         <div class="card">
             <div class="card-header border-transparent">
-                <h3 class="card-title">All Updates  ({{ $updates->count() }})</h3>
+                <h3 class="card-title">All Updates  ({{ $candidates->count() }})</h3>
             </div>
             <!-- /.card-body -->
             <div class="card-footer ">
@@ -107,44 +107,46 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Image</th>
-                                <th>Main Title</th>
-                                <th>Content</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
                                 {{-- <th>Posted by</th> --}}
+                                <th>Email</th>
+                                <th>Programme</th>
                                 <th>Time</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($updates as $key => $update)
+                                @foreach ($candidates as $key => $candidate)
                             <tr>
                                 <td>{{ ++$key }}</td>
-                                <td>
-                                    <img src="{{ asset('storage/' . $update->image) }}" 
-                                        width="50" alt="{{ asset('storage/' . $update->image) }}">
-                                </td>
-                                <td>{{ $update->title }}</td>
-                                <td>{{ $update->content}}</td>
-                                {{-- <td>{{ $update->email }}</td> --}}
-                                <td>{{ $update->created_at->diffForHumans() }}</td>
+                                
+                                <td>{{ $candidate->first }}</td>
+                                <td>{{ $candidate->last}}</td>
+                                <td>{{ $candidate->phone}}</td>
+                                <td>{{ $candidate->email}}</td>
+                                <td>{{ $candidate->programme->name}}</td>
+                                {{-- <td>{{ $candidate->email }}</td> --}}
+                                <td>{{ $candidate->created_at->diffForHumans() }}</td>
                                 <td>
 
                                     <div class="flex">
-                                        <a data-toggle="modal" data-target="#update-{{ $update->id }}"
+                                        <a data-toggle="modal" data-target="#update-{{ $candidate->id }}"
                                             class="btn btn-sm btn-primary text-white">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a data-toggle="modal" data-target="#delete-{{ $update->id }}"
+                                        <a data-toggle="modal" data-target="#delete-{{ $candidate->id }}"
                                             class="btn btn-sm btn-danger text-white">
                                             <i class="fa fa-archive"></i>
                                         </a>
                                     </div>
-                                    {{-- <a href="{{ asset('storage/'.$update->image_path)}}" download="{{ $update->large_title }}"  class="btn btn-primary">Link</a> --}}
+                                    {{-- <a href="{{ asset('storage/'.$candidate->image_path)}}" download="{{ $candidate->large_title }}"  class="btn btn-primary">Link</a> --}}
 
                                 </td>
 
-                                <div class="modal fade" id="update-{{ $update->id }}" tabindex="-1"
+                                <div class="modal fade" id="update-{{ $candidate->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -159,20 +161,20 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.update.update', $update->id) }}"
+                                                <form action="{{ route('admin.update.update', $candidate->id) }}"
                                                     class="bg-white  contact-form" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
                                                         <input type="text" 
                                                         
-                                                        name="title" class="form-control" placeholder="" value="{{ $update->title  }}"/>
+                                                        name="title" class="form-control" placeholder="" value="{{ $candidate->title  }}"/>
                                                     
                                                     </div>
 
                                                     <div class="form-group">
 
                                                         <Textarea class="form-control" placeholder="Enter Content" name="content" rows="4">
-                                                             {{ $update->content  }}
+                                                             {{ $candidate->content  }}
                                                         </Textarea>
                                                     </div>
 
@@ -194,7 +196,7 @@
                                 </div>
 
 
-                                <div class="modal fade" id="delete-{{ $update->id }}" tabindex="-1"
+                                <div class="modal fade" id="delete-{{ $candidate->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -211,11 +213,11 @@
 
 
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.update.delete', $update->id) }}"
+                                                <form action="{{ route('admin.update.delete', $candidate->id) }}"
                                                     class="bg-white  contact-form">
                                                     <div class="">
                                                         Are you Sure? <span style="color: rgb(205, 2, 2)">Delete</span>
-                                                        <strong>"{{ $update->ip }}" </strong> ?
+                                                        <strong>"{{ $candidate->ip }}" </strong> ?
                                                     </div>
 
                                             </div>

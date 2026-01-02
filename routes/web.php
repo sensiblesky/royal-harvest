@@ -4,6 +4,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,12 @@ Route::prefix("/")
         Route::get('', [HomeController::class, "home"])->name('home');
         Route::get('booking', [BookingController::class, "index"])->name('booking.index');
         Route::get('booking/confirm', [BookingController::class, "confirm"])->name('booking.confirm');
-         Route::get('apply', [BookingController::class, "indexApply"])->name('apply.index');
+         Route::get('school/apply', [BookingController::class, "indexApply"])->name('apply.index');
         Route::get('programme-offered', [BookingController::class, "programme"])->name('programme');
         Route::post('booking/store', [BookingController::class, "store"])->name('booking.store');
         Route::get('/bookings/{id}/download', [BookingController::class, "downloadPDF"])->name('booking.download');
-          Route::get('language/{lang}', [LanguageController::class, 'switchLanguage'])->name('change.language');
+        Route::get('language/{lang}', [LanguageController::class, 'switchLanguage'])->name('change.language');
+        Route::post('/candidates/apply', [CandidateController::class,'apply'])->name('candidate.apply');
     });
 
     Route::get('/test-locale', function () {
