@@ -17,24 +17,21 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::truncate();
-
-        \App\Models\User::create([
-            'name' => 'conic',
-            'email' => 'cbunih@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('conicmaster'),
-        ]);
-
-
-        \App\Models\User::create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('royalHarvest25'),
-        ]);
+        // User::truncate();
+        // \App\Models\User::create([
+        //     'name' => 'conic',
+        //     'email' => 'cbunih@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => bcrypt('conicmaster'),
+        // ]);
 
 
+        // \App\Models\User::create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@gmail.com',
+        //     'email_verified_at' => now(),
+        //     'password' => bcrypt('royalHarvest25'),
+        // ]);
 
 
         \App\Models\Programme::create(['name' => 'Starter Dreadlocks','cost' => '$500','duration' =>"3 Month",]);
@@ -50,10 +47,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Programme::create(['name' => 'Bridal Styling','cost' => '$500','duration' =>"3 Month",]);
         \App\Models\Programme::create(['name' => 'Nail Care & Design','cost' => '$500','duration' =>"3 Month",]);
         \App\Models\Programme::create(['name' => 'Barber Services','cost' => '$500','duration' =>"3 Month",]);
-
-
-
-
 
 
     }
