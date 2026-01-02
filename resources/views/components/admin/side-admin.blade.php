@@ -2,7 +2,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-primary">
     <!-- Brand Logo -->
     <a href="{{ route('admin.index') }}" class="brand-link">
-        <img src="{{ asset('static/img/logo.png') }}" alt="." class="brand-image image-cirlce" style="opacity: .8">
+        <img src="{{ asset('logo.png') }}" alt="." class="brand-image image-cirlce" style="opacity: .8">
         <span class="brand-text font-weight-light">Admin</span>
     </a>
 
@@ -165,6 +165,29 @@
                                 class="nav-link">
                                 <i
                                     class="far fa-circle nav-icon {{ Request::routeIs('admin.candidates.index') ? 'text-danger' : '' }} "></i>
+                                <p>All</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                 <li class="nav-item has-treeview {{ Request::routeIs('admin.contacts.index') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::routeIs('admin.contacts.index') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Contacts
+                            <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-info right">
+                                {{ Request::routeIs('admin.contacts.index') ? $contacts->count() : '' }}</span>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ Request::routeIs('admin.contacts.index') ? '' : route('admin.contacts.index') }}"
+                                class="nav-link">
+                                <i
+                                    class="far fa-circle nav-icon {{ Request::routeIs('admin.contacts.index') ? 'text-danger' : '' }} "></i>
                                 <p>All</p>
                             </a>
                         </li>

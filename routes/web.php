@@ -47,6 +47,8 @@ Route::name('blogs.')->prefix('/blogs')->group(function(){
     Route::get('show/{id}',[BlogController::class,'show'])->name("show");
     // Route::get('',[BlogController::class,'index'])->name("index")->middleware('auth.check');
 });
+
+
 Route::name('about.')->prefix('/about')->group(function(){
     Route::get('',[HomeController::class,'about'])->name("index");
 });

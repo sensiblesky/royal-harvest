@@ -14,7 +14,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.promotions.add') }}" enctype="multipart/form-data" method="POST"
+                    <form action="{{ route('admin.contacts.store') }}" enctype="multipart/form-data" method="POST"
                         class="bg-white  contact-form">
                         @csrf
                         <div class="form-group">
@@ -63,7 +63,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.promotions.clear') }}" class="bg-white  contact-form">
+                    <form action="{{ route('admin.contacts.clear') }}" class="bg-white  contact-form">
                         <div class="">
                             Are you Sure? <span style="color: rgb(205, 2, 2)"></span>
                             <strong>Clear All? </strong> ?
@@ -84,17 +84,16 @@
 
 
 
-    @if ($promotions->count())
+    @if ($contacts->count())
         <div class="card">
             <div class="card-header border-transparent">
-                <h3 class="card-title">All promotions ({{ $promotions->count() }})</h3>
+                <h3 class="card-title">All Contatcs ({{ $contacts->count() }})</h3>
             </div>
             <!-- /.card-body -->
             <div class="card-footer ">
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#clearAll"
                     class="btn btn-sm btn-danger float-right m-1">Clear All</a>
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
-                    class="btn btn-sm btn-success float-right m-1">Add</a>
+                
             </div>
 
 
@@ -108,98 +107,41 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Image</th>
-                                <th>Main Title</th>
-                                <th>Content</th>
-                                {{-- <th>Posted by</th> --}}
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
                                 <th>Time</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($promotions as $key => $promotion)
+                                @foreach ($contacts as $key => $contact)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>
-                                    <img src="{{ asset('storage/' . $promotion->image_path) }}" class="rounded-circle"
-                                        width="50" alt="{{ asset('storage/' . $promotion->image_path) }}">
-                                </td>
-                                <td>{{ $promotion->large_title }}</td>
-                                <td>{{ $promotion->small_title }}</td>
-                                {{-- <td>{{ $promotion->email }}</td> --}}
-                                <td>{{ $promotion->created_at->diffForHumans() }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                               
+                                <td>{{ $contact->name }}</td>
+                                <td>{{ $contact->email }}</td>
+                                <td>{{ $contact->subject }}</td>
+                                <td>{{ $contact->body }}</td>
+                                <td>{{ $contact->created_at->diffForHumans() }}</td>
                                 <td>
 
                                     <div class="flex">
-                                        <a data-toggle="modal" data-target="#update-{{ $promotion->id }}"
-                                            class="btn btn-sm btn-primary text-white">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a data-toggle="modal" data-target="#delete-{{ $promotion->id }}"
+                                       
+                                        <a data-toggle="modal" data-target="#delete-{{ $contact->id }}"
                                             class="btn btn-sm btn-danger text-white">
                                             <i class="fa fa-archive"></i>
                                         </a>
                                     </div>
-                                    {{-- <a href="{{ asset('storage/'.$promotion->image_path)}}" download="{{ $promotion->large_title }}"  class="btn btn-primary">Link</a> --}}
+                                    {{-- <a href="{{ asset('storage/'.$contact->image_path)}}" download="{{ $contact->large_title }}"  class="btn btn-primary">Link</a> --}}
 
                                 </td>
 
-                                <div class="modal fade" id="update-{{ $promotion->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalScrollableTitle text-sm">
-                                                    Modify <br>
+                                
 
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="{{ route('admin.promotion.update', $promotion) }}"
-                                                    class="bg-white  contact-form">
-                                                    @csrf
-
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <Textarea style="text-align: left"
-                                                        
-                                                        name="large_title" class="form-control" placeholder="Enter top" name="small_title">
-
-                                                            {{ $promotion->large_title  }}
-                                                        </Textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-
-                                                        <Textarea class="form-control" placeholder="Enter Content" name="small_title">
-                                                             {{ $promotion->small_title  }}
-                                                        </Textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <input name="image_path" type="file"
-                                                            class="form-control" id=""
-                                                            placeholder="File Uploads">
-                                                    </div>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <input type="submit" class="btn btn-primary" value="update" />
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="modal fade" id="delete-{{ $promotion->id }}" tabindex="-1"
+                                <div class="modal fade" id="delete-{{ $contact->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                                         <div class="modal-content">
@@ -214,11 +156,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('admin.promotion.delete', $promotion) }}"
+                                                <form action="{{ route('admin.contact.remove', $contact) }}"
                                                     class="bg-white  contact-form">
                                                     <div class="">
                                                         Are you Sure? <span style="color: rgb(205, 2, 2)">Delete</span>
-                                                        <strong>"{{ $promotion->ip }}" </strong> ?
+                                                        <strong>"{{ $contact->ip }}" </strong> ?
                                                     </div>
 
                                             </div>
@@ -236,7 +178,6 @@
     </tbody>
     </table>
     </div>
-    <!-- /.table-responsive -->
     </div>
 
 
@@ -250,8 +191,7 @@
 
 
             </div>
-            <a href="javascript:void(0)" data-toggle="modal" data-target="#add"
-                class="btn btn-sm btn-success  m-1">Add New Data</a>
+
 
         </div>
     </div>

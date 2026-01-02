@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProgrammeController;
 
 Route::name('admin.')->prefix("/auth")
@@ -47,6 +48,13 @@ Route::name('admin.')->prefix("/auth")
         Route::get('/candidates/remove/{candidate}', [CandidateController::class,'destroy'])->name('candidate.delete');
         Route::get('/candidates/status/{candidate}', [CandidateController::class,'status'])->name('candidate.status');
         Route::get('/candidates/clear', [CandidateController::class,'clear'])->name('candidates.clear');
+
+        //ABOUT AND CONTACT
+
+        Route::get('/contacts', [ContactController::class,'index'])->name('contacts.index');
+        Route::post('/contacts', [ContactController::class,'store'])->name('contacts.store');
+        Route::get('/contacts/remove/{contact}', [ContactController::class,'remove'])->name('contact.remove');
+        Route::get('/contacts/clear', [ContactController::class,'clear'])->name('contacts.clear');
         
         
     });
