@@ -59,5 +59,12 @@ Route::name('admin.')->prefix("/auth")
         
     });
 
+    Route::name('admin.')->prefix("/auth")
+    ->group(function () {
+       
+        Route::post('/contacts', [ContactController::class,'store'])->name('contacts.store');
+        
+        
+    });
 
  
