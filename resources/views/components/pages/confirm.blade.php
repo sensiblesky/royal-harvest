@@ -40,7 +40,7 @@
     <div class="booking-info" >
         <div class="info-row">
             <span class="label">Client Name:</span>
-            <span>{{ $booking->fname }}</span>
+            <span>{{ $booking->fullname }}</span>
         </div>
         <div class="info-row">
             <span class="label">Email:</span>

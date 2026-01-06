@@ -201,7 +201,7 @@
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Name:</span>
-                    <span class="detail-value" id="confirmName">{{ $booking->fname }} {{ $booking->lname }}</span>
+                    <span class="detail-value" id="confirmName">{{ $booking->fullname }} {{ $booking->lname }}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Email:</span>
