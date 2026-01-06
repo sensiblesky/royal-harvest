@@ -232,7 +232,7 @@
             <div class="info-row">
                 <span class="label"> NMB 20502401034<small>
                 <span class="label"> CRDB 0152970004000<small>
-                <span class="label"> CRDB LIPA 54353460<small>
+                <span class="label"> CRDB LIPA 11022880<small>
                 <span class="label"> VODA LIPA 54353460<small>
 
             </div>
