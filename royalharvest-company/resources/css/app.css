@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views';
+
+/* ------------------------------------------------------------------
+   Pixies Bridal Saloon — elegant luxury design system
+   Gold + charcoal + cream. Serif display + clean sans body.
+------------------------------------------------------------------ */
+@theme {
+    --font-sans: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
+
+    --color-gold-50: #fbf7ec;
+    --color-gold-100: #f6eccf;
+    --color-gold-200: #ecd79b;
+    --color-gold-300: #e2c266;
+    --color-gold-400: #d4af37;
+    --color-gold-500: #c39a2b;
+    --color-gold-600: #a67c24;
+    --color-gold-700: #855f20;
+    --color-gold-800: #6d4d20;
+    --color-gold-900: #5d421f;
+
+    --color-charcoal-50: #f6f6f6;
+    --color-charcoal-100: #e7e7e7;
+    --color-charcoal-400: #565656;
+    --color-charcoal-700: #2b2b2b;
+    --color-charcoal-800: #1f1f1f;
+    --color-charcoal-900: #1a1a1a;
+    --color-charcoal-950: #111111;
+
+    --color-cream: #faf8f3;
+    --color-cream-dark: #f1ece1;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        @apply bg-cream text-charcoal-800 font-sans antialiased;
+    }
+    h1, h2, h3, h4, .font-display {
+        font-family: var(--font-display);
+        letter-spacing: 0.01em;
+    }
+}
+
+@layer components {
+    .btn, .btn-gold, .btn-outline, .btn-dark {
+        @apply inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300 cursor-pointer;
+    }
+    .btn-gold {
+        @apply bg-gold-400 text-charcoal-900 hover:bg-gold-500 shadow-lg shadow-gold-400/20 hover:shadow-gold-400/40 hover:-translate-y-0.5;
+    }
+    .btn-outline {
+        @apply border border-gold-400 text-gold-400 hover:bg-gold-400 hover:text-charcoal-900;
+    }
+    .btn-dark {
+        @apply bg-charcoal-900 text-cream hover:bg-charcoal-800;
+    }
+    .eyebrow {
+        @apply inline-block text-gold-500 uppercase tracking-[0.3em] text-xs font-medium mb-3;
+    }
+    .container-x {
+        @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+    }
+    .field {
+        @apply w-full rounded-xl border border-charcoal-100 bg-white px-4 py-3 text-charcoal-800 placeholder-charcoal-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400/30 focus:outline-none transition;
+    }
+    .card-lift {
+        @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-charcoal-900/10;
+    }
+}
+
+@layer components {
+    [data-navbar] {
+        @apply transition-all duration-500;
+    }
+    [data-navbar].is-scrolled,
+    [data-navbar].is-solid {
+        @apply bg-charcoal-900/95 backdrop-blur shadow-lg shadow-black/20;
+    }
+}
+
+@layer utilities {
+    .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Fallback: if JS never runs, reveal content must still show */
+.no-js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+}
