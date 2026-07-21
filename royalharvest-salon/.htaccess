@@ -1,0 +1,12 @@
+# Fallback for shared hosting where the document root cannot be set to /public.
+# Best practice is still to point the domain's document root at the public/ folder.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirect any direct /public/ access back to the clean URL
+    RewriteCond %{THE_REQUEST} \s/+public/(.*)\s [NC]
+    RewriteRule ^ /%1 [R=301,L]
+
+    # Route everything into the public/ folder internally
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

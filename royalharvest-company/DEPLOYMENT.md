@@ -46,3 +46,39 @@ php artisan config:cache route:cache view:cache
 - WhatsApp float, click-to-call, back-to-top, cookie notice
 - Custom error pages (404/403/419/500/503)
 - Admin: ventures/programmes/blog/applications CRUD + profile & password change
+
+---
+
+## Troubleshooting
+
+### "The GET method is not supported for route /. Supported methods: HEAD."
+This is a **stale/corrupt route cache** on the server. Fix:
+```bash
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+# then rebuild cleanly:
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+Never commit `bootstrap/cache/*.php` — each server builds its own (now in .gitignore).
+
+### URL shows "/public/" (e.g. https://site.co.tz/public/)
+The web server document root is wrong. It must point to the **`public/`** folder,
+NOT the project root.
+
+- **cPanel / shared hosting**: either set the domain's "Document Root" to
+  `.../royalharvest/public`, OR put this in a `.htaccess` at the project root to
+  forward requests into public/ (fallback only — setting the docroot is better):
+  ```apache
+  <IfModule mod_rewrite.c>
+      RewriteEngine On
+      RewriteRule ^(.*)$ public/$1 [L]
+  </IfModule>
+  ```
+- **Nginx**: `root /var/www/royalharvest/public;`
+- Confirm `public/.htaccess` (shipped with Laravel) exists for pretty URLs on Apache.
+
+After fixing the docroot, the site loads at `https://site.co.tz/` (no `/public/`).
